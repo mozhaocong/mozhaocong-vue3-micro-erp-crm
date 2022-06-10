@@ -5,8 +5,6 @@ import eslintPlugin from 'vite-plugin-eslint'
 import visualizer from 'rollup-plugin-visualizer'
 import externalGlobals from 'rollup-plugin-external-globals'
 import { createHtmlPlugin } from 'vite-plugin-html'
-//方便引入cdn 不便于自定义script标签
-// import importToCDN from 'vite-plugin-cdn-import'
 import commonjs from 'rollup-plugin-commonjs'
 import { microViteSub } from './src/plugins'
 
@@ -28,23 +26,23 @@ export default ({ mode }: any) => {
 	const viteType = modeData.VITE_MICRO_TYPE || 'ViteChild'
 	const cdnResource = `
 	  <link   ${
-			viteType === 'ViteChild' ? 'exclude' : 'global'
-		} rel="stylesheet" href="https://cdn.staticfile.org/ant-design-vue/3.2.3/antd.min.css" crossorigin />
+		viteType === 'ViteChild' ? 'exclude' : 'global'
+	} rel="stylesheet" href="https://cdn.staticfile.org/ant-design-vue/3.2.3/antd.min.css" crossorigin />
     <script  ${
-			viteType === 'ViteChild' ? 'exclude' : 'global'
-		} src="https://cdn.staticfile.org/vue/3.2.27/vue.runtime.global.prod.min.js" crossorigin ></script>
+		viteType === 'ViteChild' ? 'exclude' : 'global'
+	} src="https://cdn.staticfile.org/vue/3.2.27/vue.runtime.global.prod.min.js" crossorigin ></script>
     <script   ${
-			viteType === 'ViteChild' ? 'exclude' : 'global'
-		} src="https://cdn.staticfile.org/vuex/4.0.2/vuex.global.prod.min.js" crossorigin ></script>
+		viteType === 'ViteChild' ? 'exclude' : 'global'
+	} src="https://cdn.staticfile.org/vuex/4.0.2/vuex.global.prod.min.js" crossorigin ></script>
     <script   ${
-			viteType === 'ViteChild' ? 'exclude' : 'global'
-		} src="https://cdn.staticfile.org/vue-router/4.0.15/vue-router.global.prod.min.js" crossorigin ></script>
+		viteType === 'ViteChild' ? 'exclude' : 'global'
+	} src="https://cdn.staticfile.org/vue-router/4.0.15/vue-router.global.prod.min.js" crossorigin ></script>
     <script   ${
-			viteType === 'ViteChild' ? 'exclude' : 'global'
-		} src="https://cdn.staticfile.org/dayjs/1.11.2/dayjs.min.js" crossorigin ></script>
+		viteType === 'ViteChild' ? 'exclude' : 'global'
+	} src="https://cdn.staticfile.org/dayjs/1.11.2/dayjs.min.js" crossorigin ></script>
     <script   ${
-			viteType === 'ViteChild' ? 'exclude' : 'global'
-		} src="https://cdn.staticfile.org/ant-design-vue/3.2.3/antd.min.js" crossorigin ></script>
+		viteType === 'ViteChild' ? 'exclude' : 'global'
+	} src="https://cdn.staticfile.org/ant-design-vue/3.2.3/antd.min.js" crossorigin ></script>
 	`
 
 	if (mode === 'dev') {
@@ -96,11 +94,12 @@ export default ({ mode }: any) => {
 		resolve: {
 			alias: {
 				'@': '/src',
+				'@child': '/child',
 			},
 		},
 		server: {
 			host: '0.0.0.0',
-			port: 8991,
+			port: 8911,
 			// 是否开启 https
 			https: false,
 			proxy: {
