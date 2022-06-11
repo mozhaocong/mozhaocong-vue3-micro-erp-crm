@@ -26,23 +26,23 @@ export default ({ mode }: any) => {
 	const viteType = modeData.VITE_MICRO_TYPE || 'ViteChild'
 	const cdnResource = `
 	  <link   ${
-		viteType === 'ViteChild' ? 'exclude' : 'global'
-	} rel="stylesheet" href="https://cdn.staticfile.org/ant-design-vue/3.2.3/antd.min.css" crossorigin />
+			viteType === 'ViteChild' ? 'exclude' : 'global'
+		} rel="stylesheet" href="https://cdn.staticfile.org/ant-design-vue/3.2.3/antd.min.css" crossorigin />
     <script  ${
-		viteType === 'ViteChild' ? 'exclude' : 'global'
-	} src="https://cdn.staticfile.org/vue/3.2.27/vue.runtime.global.prod.min.js" crossorigin ></script>
+			viteType === 'ViteChild' ? 'exclude' : 'global'
+		} src="https://cdn.staticfile.org/vue/3.2.27/vue.runtime.global.prod.min.js" crossorigin ></script>
     <script   ${
-		viteType === 'ViteChild' ? 'exclude' : 'global'
-	} src="https://cdn.staticfile.org/vuex/4.0.2/vuex.global.prod.min.js" crossorigin ></script>
+			viteType === 'ViteChild' ? 'exclude' : 'global'
+		} src="https://cdn.staticfile.org/vuex/4.0.2/vuex.global.prod.min.js" crossorigin ></script>
     <script   ${
-		viteType === 'ViteChild' ? 'exclude' : 'global'
-	} src="https://cdn.staticfile.org/vue-router/4.0.15/vue-router.global.prod.min.js" crossorigin ></script>
+			viteType === 'ViteChild' ? 'exclude' : 'global'
+		} src="https://cdn.staticfile.org/vue-router/4.0.15/vue-router.global.prod.min.js" crossorigin ></script>
     <script   ${
-		viteType === 'ViteChild' ? 'exclude' : 'global'
-	} src="https://cdn.staticfile.org/dayjs/1.11.2/dayjs.min.js" crossorigin ></script>
+			viteType === 'ViteChild' ? 'exclude' : 'global'
+		} src="https://cdn.staticfile.org/dayjs/1.11.2/dayjs.min.js" crossorigin ></script>
     <script   ${
-		viteType === 'ViteChild' ? 'exclude' : 'global'
-	} src="https://cdn.staticfile.org/ant-design-vue/3.2.3/antd.min.js" crossorigin ></script>
+			viteType === 'ViteChild' ? 'exclude' : 'global'
+		} src="https://cdn.staticfile.org/ant-design-vue/3.2.3/antd.min.js" crossorigin ></script>
 	`
 
 	if (mode === 'dev') {
