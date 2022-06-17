@@ -1,9 +1,9 @@
-import { defineComponent, KeepAlive, onActivated, ref } from 'vue'
+import { defineComponent, onActivated, ref } from 'vue'
 import { useRoute, onBeforeRouteUpdate } from 'vue-router'
 import { ArrayObjectIncludes, routeToRouterTagListData } from '@/utils'
 import { clone } from 'ramda'
 import { erpLayoutModule } from '@/store/modules/erp/public/layout'
-import CheckForm from '@child/views/modules/crm/360view/modules/CheckForm'
+import CheckForm from './moddules/CheckForm'
 
 export default defineComponent({
 	name: 'userManagement360viewDetails',
