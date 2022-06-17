@@ -20,8 +20,7 @@ export default defineComponent({
 		onActivated(() => {
 			const data = routeToRouterTagListData(route)
 			id.value = route.query.id as string
-			data.name = data.name + id
-			console.log(data)
+			data.name = data.name + id.value
 			erpLayoutModule.AddDeleteRouterTagList({ type: 'add', data: data })
 			if (!ArrayObjectIncludes(detailsList.value, 'id', id.value)) {
 				detailsList.value.push({ id: clone(id.value) })
