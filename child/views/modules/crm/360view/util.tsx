@@ -57,7 +57,7 @@ export class TableRow {
 				dataIndex: 'subscribed_email_name',
 			},
 			{
-				title: '会员类型',
+				title: '付费会员类型',
 				dataIndex: 'is_paid_member_name',
 			},
 			{
