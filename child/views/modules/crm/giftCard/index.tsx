@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import { Common, FormRadioGroup, RSearch, RTable } from '@/components'
+import { Common, RSearch, RTable } from '@/components'
 import { customerGiftCard } from '@/api/erp/crm/customer'
 import { SearchRow, TableRow } from './util'
 import Modules from './modules'

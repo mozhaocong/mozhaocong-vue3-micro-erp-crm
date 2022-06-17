@@ -5,17 +5,17 @@ import { RForm } from '@/components'
 import { BasicInfo } from './util'
 import { asyncApiRes, defaultCustomRender, isTrue } from '@/utils'
 const Props = {
-	record: {
-		type: Object as PropType<ObjectMap>,
+	id: {
+		type: String as PropType<string>,
+		required: true,
 	},
 }
 export default defineComponent({
 	props: Props,
 	setup(porp) {
 		const model = ref({})
-		if (isTrue(porp.record)) {
-			asyncApiRes(customerDetails(porp.record?.id, 'get'), model)
-			console.log(model.value)
+		if (isTrue(porp.id)) {
+			asyncApiRes(customerDetails(porp.id as string, 'get'), model)
 		}
 		const basicInfo = new BasicInfo().data
 		return () => (

@@ -21,6 +21,16 @@ const index: RouteRecordRaw = {
 			},
 		},
 		{
+			path: '/userManagement/360view/details',
+			name: 'userManagement360viewDetails',
+			component: () => import('@child/views/modules/crm/360view/modules/details'),
+			meta: {
+				title: '用户详情',
+				keepAlive: true,
+				hideMenuItem: true,
+			},
+		},
+		{
 			path: '/userManagement/giftCard',
 			name: 'userManagementGiftCard',
 			component: () => import('@child/views/modules/crm/giftCard'),

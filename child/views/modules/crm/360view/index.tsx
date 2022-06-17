@@ -1,9 +1,9 @@
 import { defineComponent, ref } from 'vue'
-import { Common, FormRadioGroup, RSearch, RTable } from '@/components'
+import { Common, RSearch, RTable } from '@/components'
 import { customer } from '@/api/erp/crm/customer'
 import { SearchRow, TableRow } from './util'
-import Modules from './modules'
 import { defaultRowProps } from '@/config'
+import { useRouter } from 'vue-router'
 const { useSearch, useRequest, commonly } = Common
 const pageKey = 'userManagement360view'
 export default defineComponent({
@@ -12,10 +12,7 @@ export default defineComponent({
 		const { searchForm } = useSearch<ObjectMap>({})
 		const pageSate = ref({}) // 搜索表单的特殊参数数据列表
 		const searchRow = new SearchRow().data // 搜索表单的数据列表
-		const moduleState = ref<ObjectMap>({
-			// checkForm: true,
-		}) //表单操作列 操作modules组件的状态
-		const moduleData = ref<ObjectMap>({}) //表单操作列 操作modules组件的参数
+		const router = useRouter()
 		const { run, data, renderPagination, getPagination, loading, refresh, pageSize, current } = useRequest(customer, {
 			manual: true,
 			pagination: true,
@@ -30,20 +27,23 @@ export default defineComponent({
 		})
 
 		const tableRow = new TableRow({
-			setModuleState,
 			setModuleData,
 			tableData: { pageSize: pageSize, current: current },
 		}).data // 表单的数据列表
 
-		function setModuleState(item: ObjectMap) {
-			moduleState.value = item
-		}
 		function setModuleData(item: ObjectMap) {
-			moduleData.value = item
+			// moduleData.value = item
+			const { record } = item
+			router.push({
+				name: 'userManagement360viewDetails',
+				query: {
+					id: record.id,
+				},
+			})
 		}
 
 		return () => (
-			<div class="sdnsnsdnsdn">
+			<div>
 				<RSearch
 					searchKey={pageKey + 'Search'}
 					clear={rClear}
@@ -64,7 +64,6 @@ export default defineComponent({
 					{...{ loading: loading.value }}
 				/>
 				{renderPagination()}
-				<Modules v-model={[moduleState.value, 'value']} {...moduleData.value} />
 			</div>
 		)
 	},

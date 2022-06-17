@@ -4,23 +4,17 @@ import { customerCardCustomerOrder } from '@/api/erp/crm/customer'
 import { TableRow } from './util'
 import { asyncApiRes, isTrue } from '@/utils'
 const Props = {
-	value: {
-		type: Boolean as PropType<boolean>,
+	id: {
+		type: String as PropType<string>,
+		required: true,
 	},
-	record: {
-		type: Object as PropType<ObjectMap>,
-		default() {
-			return {}
-		},
-	},
-}
+} as const
 export default defineComponent({
 	props: Props,
-	emits: ['update:value'],
-	setup(porp, { emit }) {
+	setup(porp) {
 		const order = ref<any>({})
-		if (isTrue(porp.record)) {
-			asyncApiRes(customerCardCustomerOrder(porp.record.id, 'get'), order)
+		if (isTrue(porp.id)) {
+			asyncApiRes(customerCardCustomerOrder(porp.id as string, 'get'), order)
 		}
 		const tableRow = new TableRow().data
 		return () => (

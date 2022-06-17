@@ -5,5 +5,5 @@ interface routerModulesType {
 	pathName: string
 	router: Array<RouteRecordRaw>
 }
-const data: Array<routerModulesType> = [{ pathName: 'oms', router: [crm360view] }]
+const data: Array<routerModulesType> = [{ pathName: 'crm', router: [crm360view] }]
 export default data
