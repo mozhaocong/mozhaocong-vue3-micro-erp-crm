@@ -23,9 +23,6 @@ export default ({ mode }: any) => {
 		configBase = modeData.VITE_CONFIG_BASE || '/'
 	}
 
-	// <script  ${
-	// 		viteType === 'ViteChild' ? 'exclude' : 'global'
-	// 	} src="https://cdn.staticfile.org/vue/3.2.27/vue.runtime.global.prod.min.js" crossorigin ></script>
 	// <script   ${
 	// 		viteType === 'ViteChild' ? 'exclude' : 'global'
 	// 	} src="https://cdn.staticfile.org/vuex/4.0.2/vuex.global.prod.min.js" crossorigin ></script>
@@ -38,6 +35,9 @@ export default ({ mode }: any) => {
 	  <link   ${
 			viteType === 'ViteChild' ? 'exclude' : 'global'
 		} rel="stylesheet" href="https://cdn.staticfile.org/ant-design-vue/3.2.3/antd.min.css" crossorigin />
+	  <script  ${
+			viteType === 'ViteChild' ? 'exclude' : 'global'
+		} src="https://cdn.staticfile.org/vue/3.2.27/vue.runtime.global.prod.min.js" crossorigin ></script>
     <script   ${
 			viteType === 'ViteChild' ? 'exclude' : 'global'
 		} src="https://cdn.staticfile.org/dayjs/1.11.2/dayjs.min.js" crossorigin ></script>
@@ -121,11 +121,11 @@ export default ({ mode }: any) => {
 		build: {
 			rollupOptions: {
 				// external: ['vue', 'vuex', 'vue-router', 'dayjs', 'ant-design-vue'],
-				external: ['dayjs', 'ant-design-vue'],
+				external: ['vue', 'dayjs', 'ant-design-vue'],
 				plugins: [
 					commonjs(),
 					externalGlobals({
-						// vue: 'Vue',
+						vue: 'Vue',
 						// vuex: 'Vuex',
 						// 'vue-router': 'VueRouter',
 						dayjs: 'dayjs',
