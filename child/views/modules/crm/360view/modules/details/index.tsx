@@ -1,9 +1,10 @@
-import { defineComponent, onActivated, ref } from 'vue'
+import { computed, defineComponent, onActivated, ref } from 'vue'
 import { useRoute, onBeforeRouteUpdate } from 'vue-router'
 import { ArrayObjectIncludes, routeToRouterTagListData } from '@/utils'
 import { clone } from 'ramda'
 import CheckForm from './moddules/CheckForm'
 import { useStore } from 'vuex'
+import { Card } from 'ant-design-vue'
 
 export default defineComponent({
 	name: 'userManagement360viewDetails',
@@ -11,29 +12,31 @@ export default defineComponent({
 		const detailsList = ref<ObjectMap[]>([])
 		const route = useRoute()
 		const { commit } = useStore()
-		const id = ref('')
-		onBeforeRouteUpdate(() => {
-			setTimeout(() => {
-				id.value = route.query.id as string
-			}, 10)
+
+		const id = computed(() => {
+			return route.query.id || ''
+		})
+		const email = computed(() => {
+			return decodeURIComponent((route?.query?.email as string) || '')
 		})
 
 		onActivated(() => {
 			const data = routeToRouterTagListData(route)
-			id.value = route.query.id as string
 			data.name = data.name + id.value
 			commit('erpLayout/AddDeleteRouterTagList', { type: 'add', data: data })
-			if (!ArrayObjectIncludes(detailsList.value, 'id', id.value)) {
+			if (!ArrayObjectIncludes(detailsList.value, 'id', id.value as string)) {
 				detailsList.value.push({ id: clone(id.value) })
 			}
 		})
 		return () => (
 			<div>
-				{detailsList.value.map((item) => {
-					return (
-						<CheckForm key={item.id} id={item.id} style={item.id === id.value ? 'display: block' : 'display: none'} />
-					)
-				})}
+				<Card title={`用户邮箱 ${email.value}`} style="width: 100%;">
+					{detailsList.value.map((item) => {
+						return (
+							<CheckForm key={item.id} id={item.id} style={item.id === id.value ? 'display: block' : 'display: none'} />
+						)
+					})}
+				</Card>
 			</div>
 		)
 	},

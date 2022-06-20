@@ -38,6 +38,7 @@ export default defineComponent({
 				name: 'userManagement360viewDetails',
 				query: {
 					id: record.id,
+					email: encodeURIComponent(record.email),
 				},
 			})
 		}

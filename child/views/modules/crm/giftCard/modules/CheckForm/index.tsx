@@ -30,7 +30,7 @@ export default defineComponent({
 		const formRow = new FormRow().data
 		return () => (
 			<Modal title="查看" width={1200} visible={true} onCancel={finish} onOk={finish}>
-				<RForm rows={formRow} rowProps={defaultRowProps} model={data.value} colSpan={12} />
+				<RForm disabled={true} rows={formRow} rowProps={defaultRowProps} model={data.value} colSpan={12} />
 			</Modal>
 		)
 	},
