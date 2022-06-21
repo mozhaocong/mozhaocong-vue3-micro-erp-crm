@@ -1,6 +1,6 @@
 import { computed, defineComponent, onActivated, ref } from 'vue'
 import { useRoute, onBeforeRouteUpdate } from 'vue-router'
-import { ArrayObjectIncludes, routeToRouterTagListData } from '@/utils'
+import { ArrayObjectIncludes, deepClone, routeToRouterTagListData } from '@/utils'
 import { clone } from 'ramda'
 import CheckForm from './moddules/CheckForm'
 import { useStore } from 'vuex'
@@ -21,9 +21,9 @@ export default defineComponent({
 		})
 
 		onActivated(() => {
-			const data = routeToRouterTagListData(route)
-			data.name = data.name + id.value
-			commit('erpLayout/AddDeleteRouterTagList', { type: 'add', data: data })
+			const data: ObjectMap = routeToRouterTagListData(route)
+			data.hoverTitle = email.value
+			commit('erpLayout/AddDeleteRouterTagList', { type: 'add', data: deepClone(data) })
 			if (!ArrayObjectIncludes(detailsList.value, 'id', id.value as string)) {
 				detailsList.value.push({ id: clone(id.value) })
 			}

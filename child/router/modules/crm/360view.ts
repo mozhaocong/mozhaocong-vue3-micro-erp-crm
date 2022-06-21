@@ -3,7 +3,7 @@ import { RouteRecordRaw } from 'vue-router'
 
 const index: RouteRecordRaw = {
 	path: '/userManagement',
-	// redirect: '/userManagement/360view',
+	redirect: '/userManagement/360view',
 	name: 'userManagement',
 	component: () => import('@/layout/index'),
 	meta: {
