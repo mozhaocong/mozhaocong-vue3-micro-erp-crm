@@ -1,5 +1,5 @@
 import { computed, defineComponent, onActivated, ref } from 'vue'
-import { useRoute, onBeforeRouteUpdate } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { ArrayObjectIncludes, deepClone, routeToRouterTagListData } from '@/utils'
 import { clone } from 'ramda'
 import CheckForm from './moddules/CheckForm'
