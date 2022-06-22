@@ -17,21 +17,21 @@ export class BasicInfo {
 			{
 				title: '激活日期',
 				key: 'shop_actived_time',
-				customRender: ({ record }) => {
-					return (
-						<div>
-							<div>商城激活时间: {record.shop_actived_time}</div>
-							<div>shopify激活时间: {record.shopify_actived_time}</div>
-						</div>
-					)
-				},
+				// customRender: ({ record }) => {
+				// 	return (
+				// 		<div>
+				// 			<div>商城激活时间: {record.shop_actived_time}</div>
+				// 			<div>shopify激活时间: {record.shopify_actived_time}</div>
+				// 		</div>
+				// 	)
+				// },
 			},
 			{ title: '关联Google账号', key: 'google' },
 			{ title: '联系电话', key: 'phone' },
 			{ title: '是否订阅邮箱', key: 'subscribed_email_name' },
 			{ title: '生日日期', key: 'birthday' },
 			{ title: '关联WhatsApp', key: 'whats_app' },
-			{ title: '会员类型', key: 'is_paid_member_name' },
+			{ title: '是否付费会员', key: 'is_paid_member_name' },
 			{ title: '关联INS', key: 'instagram' },
 		]
 	}
