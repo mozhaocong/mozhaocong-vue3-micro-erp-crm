@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import { Common, RSearch, RTable } from '@/components'
+import { Common, FormRadioGroup, RSearch, RTable } from '@/components'
 import { customerGiftCard } from '@/api/erp/crm/customer'
 import { SearchRow, TableRow } from './util'
 import Modules from './modules'
@@ -10,7 +10,12 @@ export default defineComponent({
 	name: pageKey,
 	setup() {
 		const { searchForm } = useSearch<ObjectMap>({})
-		const pageSate = ref({}) // 搜索表单的特殊参数数据列表
+		const pageSate = ref({
+			type: {
+				isSearch: true,
+				value: { type: '' },
+			},
+		}) // 搜索表单的特殊参数数据列表
 		const searchRow = new SearchRow().data // 搜索表单的数据列表
 		const tableRow = new TableRow({ setModuleState, setModuleData }).data // 表单的数据列表
 		const moduleState = ref<ObjectMap>({
@@ -44,6 +49,16 @@ export default defineComponent({
 					loading={loading.value}
 					search={rSearch}
 					v-slots={{
+						header: () => {
+							return (
+								<FormRadioGroup
+									style="margin: 0 0 20px"
+									prop="crmGiftCardType"
+									v-model={[pageSate.value.type.value.type, 'value']}
+									onChange={rSearch}
+								/>
+							)
+						},
 						...searchSlots(true),
 					}}
 					{...{ rowProps: defaultRowProps }}
