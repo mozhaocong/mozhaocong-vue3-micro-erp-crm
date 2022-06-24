@@ -1,5 +1,5 @@
 import { configCurryFilter } from '@/utils'
-import { FormConfig } from '@/components'
+import { FormBasicData } from '@/components'
 import { Button } from 'ant-design-vue'
 import { serialNumber } from '@/utils/modules/tools/common'
 
@@ -14,9 +14,9 @@ export class SearchRow {
 			{
 				title: '品牌店铺',
 				key: 'category',
-				component: <FormConfig />,
+				component: <FormBasicData />,
 				props: {
-					prop: 'crmCategory',
+					prop: 'basicCategoryList',
 				},
 			},
 		]
