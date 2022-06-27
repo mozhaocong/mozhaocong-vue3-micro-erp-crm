@@ -1,7 +1,8 @@
 import { configCurryFilter } from '@/utils'
-import { FormBasicData } from '@/components'
+import { FormBasicData, FormConfig, RRangePicker } from '@/components'
 import { Button } from 'ant-design-vue'
 import { serialNumber } from '@/utils/modules/tools/common'
+import dayjs from 'dayjs'
 
 export class SearchRow {
 	data: FormRowArray
@@ -11,13 +12,60 @@ export class SearchRow {
 				title: '用户邮箱',
 				key: 'email',
 			},
+			// {
+			// 	title: '用户是否激活',
+			// 	key: 'status',
+			// },
 			{
 				title: '品牌店铺',
 				key: 'category',
 				component: <FormBasicData />,
 				props: {
 					prop: 'basicCategoryList',
+					mode: 'multiple',
 				},
+			},
+			{
+				title: '是否验证邮箱',
+				key: 'verified_email',
+				component: <FormConfig />,
+				props: {
+					prop: 'baseYesNoStatus',
+				},
+			},
+			{
+				title: '邮件订阅',
+				key: 'subscribed_email',
+				component: <FormConfig />,
+				props: {
+					prop: 'baseYesNoStatus',
+				},
+			},
+			{
+				title: '会员类型',
+				key: 'is_paid_member',
+				component: <FormConfig />,
+				props: {
+					prop: 'crmPaid',
+				},
+			},
+			{
+				title: '创建时间',
+				key: 'start_plat_created_time',
+				component: <RRangePicker />,
+				props: () => {
+					return {
+						showTime: {
+							hideDisabledOptions: true,
+							defaultValue: [dayjs('00:00:00', 'HH:mm:ss'), dayjs('23:59:59', 'HH:mm:ss')],
+						},
+					}
+				},
+				colProps: { flex: '600px' },
+				keys: [
+					['start_plat_created_time', 'startTime'],
+					['end_plat_created_time', 'endTime'],
+				],
 			},
 		]
 	}

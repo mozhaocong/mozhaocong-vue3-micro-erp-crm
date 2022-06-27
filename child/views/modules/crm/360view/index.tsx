@@ -4,6 +4,7 @@ import { customer } from '@/api/erp/crm/customer'
 import { SearchRow, TableRow } from './util'
 import { defaultRowProps } from '@/config'
 import { useRouter } from 'vue-router'
+import { isTrue } from '@/utils'
 const { useSearch, useRequest, commonly } = Common
 const pageKey = 'userManagement360view'
 export default defineComponent({
@@ -24,6 +25,12 @@ export default defineComponent({
 			searchRows: searchRow,
 			run,
 			getPagination,
+			setSearchData(item) {
+				if (isTrue(item.category)) {
+					item.category = item.category.join(',')
+				}
+				return item
+			},
 		})
 
 		const tableRow = new TableRow({
