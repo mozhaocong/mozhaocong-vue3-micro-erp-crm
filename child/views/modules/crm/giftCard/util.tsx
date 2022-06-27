@@ -71,13 +71,13 @@ export class TableRow {
 				title: '有效期',
 				dataIndex: 'expires_on',
 				align: 'center',
-				width: 300,
+				width: 200,
 				customRender: ({ text }) => {
 					return text || '无限制'
 				},
 			},
 			{ title: '关联订单', dataIndex: 'order_no', align: 'center', width: 150 },
-			{ title: '创建日期', dataIndex: 'created_at', align: 'center', width: 300 },
+			{ title: '创建日期', dataIndex: 'created_at', align: 'center', width: 200 },
 			{
 				title: '创建人',
 				dataIndex: 'customer',
@@ -100,6 +100,7 @@ export class TableRow {
 					return (
 						<div>
 							<Button
+								type="primary"
 								onClick={() => {
 									operationConfig.setModuleData({
 										record: record,
