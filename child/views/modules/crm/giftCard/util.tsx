@@ -19,7 +19,7 @@ export class SearchRow {
 			},
 			{
 				title: '有效期',
-				key: 'email',
+				key: 'start_expires_on',
 				component: <RRangePicker />,
 				keys: [
 					['start_expires_on', 'startTime'],
@@ -40,7 +40,7 @@ export class SearchRow {
 			},
 			{
 				title: '礼品卡价值',
-				key: 'email',
+				key: 'start_initial_value',
 				component: <MinMaxInput />,
 				keys: [
 					['start_initial_value', 'minValue'],
