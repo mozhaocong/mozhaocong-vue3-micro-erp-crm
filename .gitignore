@@ -24,6 +24,5 @@ yarn.lock*
 *.njsproj
 *.sln
 *.sw?
-
 .mocks/
-
+stats.html

@@ -2,7 +2,7 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "target": "esnext",
-        "module": "esnext",
+        "module": "commonjs",
         "strict": true,
         "jsx": "preserve",
         "importHelpers": true,
@@ -15,6 +15,7 @@
         "baseUrl": ".",
         "types": [
             "vite/client",
+            "node",
         ],
         "paths": {
             "@/*": [
@@ -41,7 +42,9 @@
         "child/**/*.vue",
         "child/*.vue",
         "tests/**/*.ts",
+        "rootConfig/**/*.ts",
         "vite.config.ts"
+
     ],
     "exclude": [
         "node_modules"

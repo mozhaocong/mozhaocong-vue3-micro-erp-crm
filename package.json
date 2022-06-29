@@ -9,7 +9,9 @@
     "build": "vite build",
     "build:buildMicroChild": "vite build --mode buildMicroChild",
     "serve": "vite preview",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "init1": "nodemon --exec ts-node  -r tsconfig-paths/register --files rootConfig/index.ts ",
+    "init": "ts-node rootConfig/index.ts"
   },
   "dependencies": {
     "@micro-zoe/micro-app": "^0.8.5",
@@ -17,10 +19,12 @@
     "axios": "^0.22.0",
     "file-saver": "^2.0.5",
     "jsbarcode": "^3.11.5",
+    "nodemon": "^2.0.18",
     "qrcodejs2": "^0.0.2",
     "qrcodejs2-fix": "^0.0.1",
     "ramda": "^0.27.1",
     "sortablejs": "^1.15.0",
+    "tsconfig-paths": "^4.0.0",
     "vue": "^3.2.6",
     "vue-router": "^4.1.0-51021cc",
     "vuex": "^4.0.2",
@@ -49,6 +53,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-external-globals": "^0.6.1",
     "rollup-plugin-visualizer": "^5.6.0",
+    "ts-node": "^10.8.1",
     "typescript": "^4.1.3",
     "vite": "^2.5.2",
     "vite-plugin-cdn-import": "^0.3.5",
