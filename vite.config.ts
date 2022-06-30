@@ -9,7 +9,8 @@ import commonjs from 'rollup-plugin-commonjs'
 import { microViteSub } from './src/plugins'
 
 // 代理地址
-const target = 'http://crm_test.htwig.com'
+// const target = 'http://crm_test.htwig.com'
+const target = 'https://portal.admin.htwig.com'
 
 export default ({ mode }: any) => {
 	let configBase = ''
