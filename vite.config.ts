@@ -17,7 +17,7 @@ export default ({ mode }: any) => {
 	const modeData = loadEnv(mode, process.cwd())
 	const addPlugins: any = []
 	// 判断是不是vite子应用打包
-	if (mode === 'buildMicroChild') {
+	if (['buildMicroChild', 'buildMicroChildProd'].includes(mode)) {
 		configBase = (modeData.VITE_BUILD_HOST || '') + (modeData.VITE_CONFIG_BASE || '/')
 		addPlugins.push(microViteSub())
 	} else {
