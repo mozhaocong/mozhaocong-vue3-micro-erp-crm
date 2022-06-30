@@ -11,7 +11,7 @@ export default defineComponent({
 	setup() {
 		const detailsList = ref<ObjectMap[]>([])
 		const route = useRoute()
-		const { commit } = useStore()
+		const { commit, state } = useStore()
 
 		const id = computed(() => {
 			return route.query.id || ''
@@ -20,13 +20,26 @@ export default defineComponent({
 			return decodeURIComponent((route?.query?.email as string) || '')
 		})
 
+		function setDetailsList() {
+			const routerTagIdList = state.erpLayout.routerTagList
+				.filter((res: any) => {
+					return res.name === 'userManagement360viewDetails'
+				})
+				.map((res: any) => {
+					return res?.stateData?.id
+				})
+			detailsList.value = detailsList.value.filter((item) => routerTagIdList.includes(item.id))
+		}
+
 		onActivated(() => {
 			const data: ObjectMap = routeToRouterTagListData(route)
 			data.hoverTitle = email.value
+			data.stateData = { id: id.value }
 			commit('erpLayout/AddDeleteRouterTagList', { type: 'add', data: deepClone(data) })
 			if (!ArrayObjectIncludes(detailsList.value, 'id', id.value as string)) {
 				detailsList.value.push({ id: clone(id.value) })
 			}
+			setDetailsList()
 		})
 		return () => (
 			<div>
