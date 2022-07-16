@@ -1,7 +1,7 @@
 import { defineComponent, PropType, ref } from 'vue'
 import { Modal } from 'ant-design-vue'
 import { giftCardDetails } from '@/api/erp/crm/customer'
-import { asyncApiRes, isTrue } from '@/utils'
+import { asyncApiRes, isTrue, requestJudgment } from '@/utils'
 import { FormRow } from './util'
 import { defaultRowProps } from '@/config'
 import { RForm } from '@/components'
@@ -25,7 +25,10 @@ export default defineComponent({
 		}
 		const data = ref({})
 		if (isTrue(porp.record)) {
-			asyncApiRes(giftCardDetails(porp.record.id, 'get'), data)
+			asyncApiRes(giftCardDetails(porp.record.id, 'get'), { value: '' }, (item) => {
+				if (!requestJudgment(item)) return
+				data.value = item?.data?.result || {}
+			})
 		}
 		const formRow = new FormRow().data
 		return () => (

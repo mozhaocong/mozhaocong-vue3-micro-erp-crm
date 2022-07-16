@@ -3,7 +3,7 @@ import { customerDetails } from '@/api/erp/crm/customer'
 import { Card, Table } from 'ant-design-vue'
 import { RForm } from '@/components'
 import { BasicInfo, CustomerAddresses, SourceInformation } from './util'
-import { asyncApiRes, defaultCustomRender, isTrue } from '@/utils'
+import { asyncApiRes, defaultCustomRender, isTrue, requestJudgment } from '@/utils'
 const Props = {
 	id: {
 		type: String as PropType<string>,
@@ -15,7 +15,10 @@ export default defineComponent({
 	setup(porp) {
 		const model = ref<ObjectMap>({})
 		if (isTrue(porp.id)) {
-			asyncApiRes(customerDetails(porp.id as string, 'get'), model)
+			asyncApiRes(customerDetails(porp.id as string, 'get'), { value: '' }, (item) => {
+				if (!requestJudgment(item)) return
+				model.value = item?.data?.result || {}
+			})
 		}
 		const basicInfo = new BasicInfo().data
 		const sourceInformation = new SourceInformation().data

@@ -2,7 +2,7 @@ import { defineComponent, PropType, ref } from 'vue'
 import { RTable } from '@/components'
 import { customerCardCustomerOrder } from '@/api/erp/crm/customer'
 import { TableRow } from './util'
-import { asyncApiRes, isTrue } from '@/utils'
+import { asyncApiRes, isTrue, requestJudgment } from '@/utils'
 const Props = {
 	id: {
 		type: String as PropType<string>,
@@ -14,7 +14,10 @@ export default defineComponent({
 	setup(porp) {
 		const order = ref<any>({})
 		if (isTrue(porp.id)) {
-			asyncApiRes(customerCardCustomerOrder(porp.id as string, 'get'), order)
+			asyncApiRes(customerCardCustomerOrder(porp.id as string, 'get'), { value: '' }, (item) => {
+				if (!requestJudgment(item)) return
+				order.value = item?.data?.result || {}
+			})
 		}
 		const tableRow = new TableRow().data
 		return () => (
