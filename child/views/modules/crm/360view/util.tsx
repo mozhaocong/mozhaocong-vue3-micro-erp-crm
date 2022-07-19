@@ -3,6 +3,7 @@ import { FormBasicData, FormConfig, RRangePicker } from '@/components'
 import { Button } from 'ant-design-vue'
 import { serialNumber } from '@/utils/modules/tools/common'
 import dayjs from 'dayjs'
+import { searchDefRow } from '@/config'
 
 export class SearchRow {
 	data: FormRowArray
@@ -25,6 +26,7 @@ export class SearchRow {
 					mode: 'multiple',
 				},
 			},
+			...searchDefRow,
 			{
 				title: '是否验证邮箱',
 				key: 'verified_email',

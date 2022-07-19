@@ -2,23 +2,25 @@ import { defineComponent, ref } from 'vue'
 import { Common, RSearch, RTable } from '@/components'
 import { customer } from '@/api/erp/crm/customer'
 import { SearchRow, TableRow } from './util'
-import { defaultRowProps } from '@/config'
+import { defaultRowProps, searchModelDefData } from '@/config'
 import { useRouter } from 'vue-router'
 import { isTrue } from '@/utils'
+import { Button } from 'ant-design-vue'
 const { useSearch, useRequest, commonly } = Common
 const pageKey = 'userManagement360view'
 export default defineComponent({
 	name: pageKey,
 	setup() {
-		const { searchForm } = useSearch<ObjectMap>({})
+		const { searchForm } = useSearch<ObjectMap>(searchModelDefData)
 		const pageSate = ref({}) // 搜索表单的特殊参数数据列表
 		const searchRow = new SearchRow().data // 搜索表单的数据列表
 		const router = useRouter()
-		const { run, data, renderPagination, getPagination, loading, refresh, pageSize, current } = useRequest(customer, {
-			manual: true,
-			pagination: true,
-			defaultParams: [[]],
-		})
+		const { run, data, runSearchData, renderPagination, getPagination, loading, refresh, pageSize, current } =
+			useRequest(customer, {
+				manual: true,
+				pagination: true,
+				defaultParams: [searchModelDefData],
+			})
 		const { searchSlots, rSearch, rClear } = commonly({
 			pageSate,
 			searchForm,
@@ -50,6 +52,7 @@ export default defineComponent({
 			})
 		}
 
+		console.log('searchForm', searchForm.value)
 		return () => (
 			<div>
 				<RSearch
@@ -71,7 +74,7 @@ export default defineComponent({
 					columns={tableRow}
 					{...{ loading: loading.value }}
 				/>
-				{renderPagination()}
+				{renderPagination(runSearchData.value)}
 			</div>
 		)
 	},
