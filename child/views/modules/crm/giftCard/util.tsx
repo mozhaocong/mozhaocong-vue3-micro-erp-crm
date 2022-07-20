@@ -1,5 +1,6 @@
 import { FormConfig, FormBasicData, MinMaxInput, RRangePicker } from '@/components'
 import { Button } from 'ant-design-vue'
+import { searchDefRow } from '@/config'
 
 export class SearchRow {
 	data: FormRowArray
@@ -17,6 +18,7 @@ export class SearchRow {
 					prop: 'baseEffective',
 				},
 			},
+			...searchDefRow,
 			{
 				title: '有效期',
 				key: 'start_expires_on',

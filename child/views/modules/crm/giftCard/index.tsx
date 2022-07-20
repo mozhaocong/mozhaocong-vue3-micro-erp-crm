@@ -3,13 +3,13 @@ import { Common, FormRadioGroup, RSearch, RTable } from '@/components'
 import { customerGiftCard } from '@/api/erp/crm/customer'
 import { SearchRow, TableRow } from './util'
 import Modules from './modules'
-import { defaultRowProps } from '@/config'
+import { defaultRowProps, searchModelDefData } from '@/config'
 const { useSearch, useRequest, commonly } = Common
 const pageKey = 'userManagementGiftCard'
 export default defineComponent({
 	name: pageKey,
 	setup() {
-		const { searchForm } = useSearch<ObjectMap>({})
+		const { searchForm } = useSearch<ObjectMap>(searchModelDefData)
 		const pageSate = ref({
 			type: {
 				isSearch: true,
@@ -29,10 +29,14 @@ export default defineComponent({
 			moduleData.value = item
 		}
 
-		const { run, data, renderPagination, getPagination, loading, refresh } = useRequest(customerGiftCard, {
-			manual: true,
-			pagination: true,
-		})
+		const { run, data, renderPagination, runSearchData, getPagination, loading, refresh } = useRequest(
+			customerGiftCard,
+			{
+				manual: true,
+				pagination: true,
+				defaultParams: [searchModelDefData],
+			}
+		)
 		const { searchSlots, rSearch, rClear } = commonly({
 			pageSate,
 			searchForm,
@@ -72,7 +76,7 @@ export default defineComponent({
 					columns={tableRow}
 					{...{ loading: loading.value }}
 				/>
-				{renderPagination()}
+				{renderPagination(runSearchData.value)}
 				<Modules v-model={[moduleState.value, 'value']} {...moduleData.value} />
 			</>
 		)
